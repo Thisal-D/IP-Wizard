@@ -3,8 +3,10 @@
 ## Tests
 
 - Pixel 6 Pro (Virtual)
-  - ![3](https://github.com/Thisal-D/IP-Wizard/assets/93121062/0a771a4e-406a-41d3-87cd-24148b917c9a)
-  - ![4](https://github.com/Thisal-D/IP-Wizard/assets/93121062/570d0a09-e187-4c77-a31a-3fbc113e1226)
+  dark             |     light
+:-------------------------:|:-------------------------:
+ ![3](https://github.com/Thisal-D/IP-Wizard/assets/93121062/b23572eb-60c7-49aa-b923-dc2b3f918e3c)  |  ![4](https://github.com/Thisal-D/IP-Wizard/assets/93121062/e503b927-364d-4dd0-80b8-c62d870943b6)
+
 
 - Pixel XL (Virtual)
   - ![2](https://github.com/Thisal-D/IP-Wizard/assets/93121062/af5650e7-c781-45ce-927b-9c6eaa28e29f)
