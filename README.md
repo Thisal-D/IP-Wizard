@@ -7,7 +7,7 @@
 
 
 - Pixel XL (Virtual)
-- ![2](https://github.com/Thisal-D/IP-Wizard/assets/93121062/af5650e7-c781-45ce-927b-9c6eaa28e29f) ![1](https://github.com/Thisal-D/IP-Wizard/assets/93121062/7e2d9b43-e8df-4ea4-95fc-7d5022ddacfb)
+![2](https://github.com/Thisal-D/IP-Wizard/assets/93121062/af5650e7-c781-45ce-927b-9c6eaa28e29f) ![1](https://github.com/Thisal-D/IP-Wizard/assets/93121062/7e2d9b43-e8df-4ea4-95fc-7d5022ddacfb)
 
 
 - 7.46 Fold
