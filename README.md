@@ -14,6 +14,6 @@ Pixel XL (Virtual)
 
 <br><br>
 
-7.46 Fold
+7.46 Fold (Virtual)
 
 - ![5](https://github.com/Thisal-D/IP-Wizard/assets/93121062/7cb130c2-6003-4af6-badf-09d7352b988f) ![6](https://github.com/Thisal-D/IP-Wizard/assets/93121062/127a7d68-7192-45db-938d-a5c7d5bce3e8)
