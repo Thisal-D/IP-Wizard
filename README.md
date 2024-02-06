@@ -1,6 +1,6 @@
 # IP Wizard
 
-for download apk : <a href="https://drive.google.com/file/d/1pdjX-uNBWMVbCVGPXBlTcFoiGPi1sywL/view?usp=drive_link">IP Wizard</a>
+For download apk : <a href="https://drive.google.com/file/d/1pdjX-uNBWMVbCVGPXBlTcFoiGPi1sywL/view?usp=drive_link">IP Wizard</a>
 
 ## Tests
 
