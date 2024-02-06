@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -32,28 +33,30 @@
                 tools:layout_editor_absoluteY="-2dp">
 
                 <TextView
-                    android:id="@+id/availableIpsCountTextOutput3"
+                    android:id="@+id/defaulSubnetMaskOututText"
                     android:layout_width="wrap_content"
-                    android:layout_height="13dp"
-                    android:layout_marginTop="58dp"
-                    android:text="0"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="None"
+                    android:textAlignment="textEnd"
                     android:textAllCaps="false"
-                    android:textSize="9sp"
-                    android:textStyle="bold|italic"
-                    app:layout_constraintStart_toEndOf="@+id/textView3"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/titleText3"
+                    app:layout_constraintStart_toEndOf="@+id/textView26" />
 
                 <TextView
                     android:id="@+id/titleText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:baselineAligned="false"
                     android:fontFamily="@font/aguafina_script"
                     android:text="   IP  Wizard   "
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="#AAAAFF"
+                    android:textColor="#AA99FF"
                     android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -63,16 +66,15 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="29dp"
-                    android:layout_height="13dp"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginEnd="96dp"
-                    android:text="IPs   :   "
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:text="IPs"
                     android:textAllCaps="false"
-                    android:textSize="9sp"
+                    android:textSize="8sp"
                     android:textStyle="bold|italic"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/textView19"
+                    app:layout_constraintStart_toStartOf="@+id/textView19" />
 
                 <View
                     android:id="@+id/divider3"
@@ -86,6 +88,98 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="DSB"
+                    android:textSize="8sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/titleText3"
+                    app:layout_constraintStart_toEndOf="@+id/titleText3" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:text="IP"
+                    android:textSize="8sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toTopOf="@+id/textView3"
+                    app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/ipClassTextOutput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:text="None"
+                    android:textAlignment="textEnd"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/availableIpAddressCountOutputText"
+                    app:layout_constraintEnd_toEndOf="@+id/availableIpAddressCountOutputText" />
+
+                <TextView
+                    android:id="@+id/availableIpAddressCountOutputText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:text="None"
+                    android:textAlignment="textEnd"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/defaulSubnetMaskOututText"
+                    app:layout_constraintEnd_toEndOf="@+id/defaulSubnetMaskOututText" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text=":"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/titleText3"
+                    app:layout_constraintStart_toEndOf="@+id/textView19" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:text=":"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/textView26"
+                    app:layout_constraintEnd_toEndOf="@+id/textView26" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:text=":"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/textView27"
+                    app:layout_constraintEnd_toEndOf="@+id/textView27" />
+
+                <ImageButton
+                    android:id="@+id/settingButton"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/settings_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/settings_foreground" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -434,6 +528,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/section3"
                 tools:layout_conversion_absoluteHeight="0dp"
@@ -445,7 +540,7 @@
                     android:layout_height="wrap_content"
                     android:text="IP Ranges"
                     android:textAllCaps="false"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold|italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -457,12 +552,13 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="30dp"
                     android:foregroundTint="#6E96A8"
-                    android:scrollbars="vertical"
                     android:nestedScrollingEnabled="true"
+                    android:scrollbars="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TableLayout
                         android:id="@+id/ipAddressRangeTableOutput"
                         android:layout_width="match_parent"
@@ -470,6 +566,42 @@
                         android:isScrollContainer="true"
                         android:padding="0dp" />
                 </ScrollView>
+
+                <TextView
+                    android:id="@+id/ipRangesDisplayCountOutputText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="0"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView32"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="IPRS"
+                    android:textSize="8sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintStart_toEndOf="@+id/textView24"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView29"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -493,7 +625,7 @@
         android:layout_width="wrap_content"
         android:layout_height="10dp"
         android:layout_marginBottom="2dp"
-        android:text="1.0.0.0"
+        android:text="1.0.0.1"
         android:textAllCaps="true"
         android:textSize="8sp"
         android:textStyle="bold|italic"

@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "IP Wizard 2.0"
+rootProject.name = "IP Wizard"
 include ':app'

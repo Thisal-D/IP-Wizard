@@ -20,9 +20,7 @@ public class Valid{
     }
 
     public static Boolean ip_format_is_valid(String ip_address){
-        Boolean validity = true;
         Integer dots = 0;
-
         for (Integer i=0; i<ip_address.length(); i++) {
             if (ip_address.charAt(i)=='.') {
                 dots++;
@@ -36,7 +34,7 @@ public class Valid{
         catch (Exception e){
             return false;
         }
-
+        
         Integer index=0;
         Integer[] ip_address_split_int  = new Integer[4];
         index = 0;
@@ -54,17 +52,14 @@ public class Valid{
             }
         }
         else{
-            //System.out.println("OUTPUT : False @ Dot Count");
             return false;
         }
         for (Integer int_ip: ip_address_split_int ){
             if (int_ip>255 || int_ip<0){
-                //System.out.println("OUTPUT : ip values more than 255 and less than 0");
                 return false;
             }
         }
         if (ip_address_split_int[0]==127 || ip_address_split_int[0] < 1 || ip_address_split_int[0]>223){
-            //System.out.println("OUTPUT : ip[0] is invalid");
             return false;
         }
         else{
@@ -83,7 +78,6 @@ public class Valid{
     }
 
     public static Boolean is_valid_subnet_mask(String subnet_mask, String ip_class){
-        Boolean validity = true;
         Integer dots = 0;
 
         for (Integer i=0; i<subnet_mask.length(); i++) {
@@ -102,7 +96,6 @@ public class Valid{
         Integer[] subnet_mask_split_int  = new Integer[4];
         index = 0;
         if (dots==3){
-            //ip_address_split_str = ip_address.split(".",4);
             for (Integer i=0; i<4; i++) {
                 try{
                     Integer int_sub_mask = Integer.parseInt(subnet_mask_split_str[i]);
@@ -115,30 +108,17 @@ public class Valid{
             }
         }
         else{
-            //System.out.println("OUTPUT : False @ Dot Count");
             return false;
         }
         for (Integer int_sub_mask: subnet_mask_split_int ){
             if (int_sub_mask>255 || int_sub_mask<0){
-                //System.out.println("OUTPUT : ip values more than 255 and less than 0");
                 return false;
             }
         }
 
-        System.out.print("System Out :");
-        System.out.print(subnet_mask_split_int[0]);
-        System.out.print(".");
-        System.out.print(subnet_mask_split_int[1]);
-        System.out.print(".");
-        System.out.print(subnet_mask_split_int[2]);
-        System.out.print(".");
-        System.out.println(subnet_mask_split_int[3]);
-        System.out.println("System Out : "+is_valid_subnet_mask_value(subnet_mask_split_int[3]));
         if (ip_class.equals("C")){
-            System.out.println("System Out : Class C");
             if (subnet_mask_split_int[0]==255 && subnet_mask_split_int[1]==255 && subnet_mask_split_int[2]==255){
                 if (!(is_valid_subnet_mask_value(subnet_mask_split_int[3]))){
-                    System.out.println("System Out : Fail Here");
                     return false;
                 }
             }
@@ -147,7 +127,6 @@ public class Valid{
             }
         }
         else if (ip_class.equals("B")) {
-            System.out.println("System Out : Class B");
             if (subnet_mask_split_int[0]==255 && subnet_mask_split_int[1]==255) {
                 if (subnet_mask_split_int[2]==255){
                     if (!is_valid_subnet_mask_value(subnet_mask_split_int[3])){
@@ -159,12 +138,10 @@ public class Valid{
                 }
             }
             else{
-                System.out.println("System Out : Fail Here3");
                 return false;
             }
         }
         else if (ip_class.equals("A")){
-            System.out.println("System Out : Class A");
             if (subnet_mask_split_int[0]==255){
                 if (subnet_mask_split_int[1]==255){
                     if (subnet_mask_split_int[2]==255){
@@ -188,12 +165,10 @@ public class Valid{
             return false;
         }
 
-
         return  true;
     }
 
     public static Boolean is_valid_subnet_count(String str_subnet_count, Integer max_subnet_count){
-        Boolean validity = true;
         Integer subnet_count ;
         try {
             subnet_count = Integer.parseInt(str_subnet_count);
@@ -204,12 +179,10 @@ public class Valid{
         if (!(subnet_count<=max_subnet_count) || !(subnet_count>0)){
             return false;
         }
-
         return true;
     };
 
     public static Boolean is_valid_host_count(String str_host_count, Integer max_host_count){
-        Boolean validity = true;
         Integer host_count ;
         try {
             host_count = Integer.parseInt(str_host_count);
@@ -225,7 +198,6 @@ public class Valid{
 
     public static  String get_ip_class(String ip_address){
         Integer ip1 = Integer.parseInt(split(ip_address,'.',4 )[0]);
-
         if (ip1>191){
             return "C";
         } else if (ip1>127) {
@@ -235,5 +207,17 @@ public class Valid{
             return "A";
         }
     };
+
+    public static  boolean is_valid_ip_range_count(String str_range_count){
+        Integer int_range_count = 0;
+        try{
+              Integer.parseInt(str_range_count);
+        }
+        catch (Exception e){
+            return false;
+        }
+
+        return  true;
+    }
 
 }

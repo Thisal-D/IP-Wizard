@@ -1,8 +1,42 @@
 package com.example.ipwizard20;
 
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
 import java.nio.file.FileSystems;
 
+
+
 public class Calculate {
+
+    public static  String get_formatted_address_by_class(String address, String ip_class){
+        String[] split_ip =  Valid.split(address,'.',4);
+        String formatted_address = "";
+        Integer end = 0;
+        if (ip_class=="C") end=3;
+        if (ip_class=="B") end=2;
+        if (ip_class=="A") end=1;
+        for (Integer i=0; i<end; i++){
+            formatted_address+=String.valueOf(Integer.parseInt(split_ip[i])) + ".";
+        }
+        formatted_address += str_multiply("0.",(4-end));
+        formatted_address =   formatted_address.substring(0,formatted_address.length()-1);
+        return  formatted_address;
+    }
+
+    public static  String get_formatted_address(String address){
+        String formatted_address = "";
+        String[] split_ip =  Valid.split(address,'.',4);
+            for (Integer i=0; i<3; i++){
+            //System.out.print(split_ip[i]+ ".");
+            formatted_address+=String.valueOf(Integer.parseInt(split_ip[i])) + ".";
+        }
+        //System.out.println(split_ip[3]);
+        formatted_address += String.valueOf(Integer.valueOf(split_ip[3])) ;
+        return formatted_address;
+    }
+
     public static Integer twos_power(Integer value){
         Double base = 2.0;
         Double exponent = 0.0;
@@ -67,7 +101,7 @@ public class Calculate {
     }
 
 
-    public static String[][] generate_range(String subnet_mask, String ip_class, String ip_address){
+    public static String[][] generate_range(String subnet_mask, String ip_class, String ip_address, Integer array_size){
         Double block_size_double = 0.0;
         Integer block_bits = 0;
         Integer block_get = 1;
@@ -75,13 +109,9 @@ public class Calculate {
         String[] subnet_values = new String[4];
         String binary_val = "";
         subnet_values = Valid.split(subnet_mask,'.',4);
-        System.out.print("TEST OUTPUT : ");
-        System.out.println(subnet_values[0]+"."+subnet_values[1]+"."+subnet_values[2]+"."+subnet_values[3]);
-        System.out.print("TEST OUTPUT : ");
         for(Integer i=0; i<4; i++){
             binary_val = decimal_to_binary(Integer.valueOf(subnet_values[i]));
             binary_val = binary_val + str_multiply("0",8-binary_val.length());
-            System.out.print(binary_val +".");
             for (Integer i2=0; i2<binary_val.length(); i2++){
                 if(binary_val.charAt(i2) == '0') block_bits++;
             }
@@ -90,17 +120,9 @@ public class Calculate {
             }
             block_get ++;
         }
-        System.out.println();
-        System.out.print("TEST OUTPUT : ");
-        System.out.println(block_bits);
+       
         block_size_double =  Math.pow(2,block_bits);
         block_size = block_size_double.intValue();
-        System.out.print("TEST OUTPUT : ");
-        System.out.println(block_size);
-        System.out.print("TEST OUTPUT : ");
-        System.out.println(block_get);
-
-        Integer array_size = 100;
         String[][] ip_range = new String[array_size][2];
 
         String[] ip_address_values = Valid.split(ip_address,'.',4);
@@ -116,8 +138,6 @@ public class Calculate {
                 end_ip = ip_temp + "." + String.valueOf(ip4+block_size-1);
                 ip_range[index] = new String[]{start_ip,end_ip};
                 index ++;
-                //System.out.print("TEST OUTPUT : ");
-                //System.out.print(start_ip + "-" +end_ip+"\n");
             }
         }
         if (ip_class.equals("B")) {
@@ -185,17 +205,8 @@ public class Calculate {
             }
 
         }
-
-        for (Integer ins=0; ins<ip_range.length; ins++){
-            System.out.print("TEST OUTPUT : ");
-            if (ip_range[ins][0]!=null)  {
-                System.out.print(ip_range[ins][0] + "-" + ip_range[ins][1]);
-            }
-            System.out.println("----------------");
-        }
         return ip_range;
     }
-
 
 
     public static Integer[] get_net_bits__host_bits(String ip_class, Integer subnets, Integer hosts){
@@ -254,6 +265,8 @@ public class Calculate {
         Integer[] sub_host_bits = new Integer[]{subnet_bits,host_bits};
         return sub_host_bits;
     }
+
+
     public static String generate_subnet_mask(String ip_class, Integer subnet_bits, Integer host_bits){
         String sub1 = "255";
         String sub2 = "";
@@ -311,10 +324,131 @@ public class Calculate {
                 sub4 = binary_to_decimal(sub4_bin);
             }
         }
-
-        System.out.println("Bainary : "+ sub2_bin + "." + sub3_bin + "." + sub4_bin);
         return (sub1+"."+sub2+"."+sub3+"."+sub4);
-
     }
 
+    /*
+    public static void generate_range_and_display(String subnet_mask, String ip_class, String ip_address, Integer array_size,
+                                                  TextView[][] ip_ranges_display_text_views, TableLayout ip_range_output_table, TableRow[] ip_ranges_display_table_rows){
+        Double block_size_double = 0.0;
+        Integer block_bits = 0;
+        Integer block_get = 1;
+        Integer block_size = 0;
+        String[] subnet_values = new String[4];
+        String binary_val = "";
+        subnet_values = Valid.split(subnet_mask,'.',4);
+        for(Integer i=0; i<4; i++){
+            binary_val = decimal_to_binary(Integer.valueOf(subnet_values[i]));
+            binary_val = binary_val + str_multiply("0",8-binary_val.length());
+            for (Integer i2=0; i2<binary_val.length(); i2++){
+                if(binary_val.charAt(i2) == '0') block_bits++;
+            }
+            if (!(block_bits==0)){
+                break;
+            }
+            block_get ++;
+        }
+       
+        block_size_double =  Math.pow(2,block_bits);
+        block_size = block_size_double.intValue();
+        //String[][] ip_range = new String[array_size][2];
+
+        String[] ip_address_values = Valid.split(ip_address,'.',4);
+        String start_ip = "";
+        String end_ip = "";
+        String ip_temp = "";
+        Integer index = 0 ;
+        if (ip_class.equals("C")) {
+            ip_temp = ip_address_values[0] + "." + ip_address_values[1] + "." + ip_address_values[2];
+            for (Integer ip4=0; ip4<256; ip4+=block_size){
+                if (index>=array_size)break;
+                start_ip = ip_temp + "." + String.valueOf(ip4);
+                end_ip = ip_temp + "." + String.valueOf(ip4+block_size-1);
+                ip_ranges_display_text_views[index][0].setText(start_ip);
+                ip_ranges_display_text_views[index][2].setText(end_ip);
+                ip_range_output_table.addView(ip_ranges_display_table_rows[index]);
+                //ip_range[index] = new String[]{start_ip,end_ip};
+                index ++;
+            }
+        }
+        if (ip_class.equals("B")) {
+            ip_temp = ip_address_values[0] + "." + ip_address_values[1] ;
+
+            if(block_get==3){
+                for (Integer ip3=0; ip3<256; ip3+=block_size){
+                    if (index>=array_size)break;
+                    start_ip = ip_temp + "." + String.valueOf(ip3) + "." + "0";
+                    end_ip = ip_temp + "." + String.valueOf(ip3+block_size-1) + "." + "255";
+                    ip_ranges_display_text_views[index][0].setText(start_ip);
+                    ip_ranges_display_text_views[index][2].setText(end_ip);
+                    ip_range_output_table.addView(ip_ranges_display_table_rows[index]);
+                    //ip_range[index] = new String[]{start_ip,end_ip};
+                    index ++;
+                }
+            }
+            if(block_get==4) {
+                for (Integer ip3=0; ip3 < 256; ip3++) {
+                    if (index>=array_size) break;
+                    for (Integer ip4=0; ip4<256 ; ip4+=block_size){
+                        if (index>=array_size) break;
+                        start_ip = ip_temp + "." + String.valueOf(ip3) + "." + String.valueOf(ip4);
+                        end_ip = ip_temp + "." + String.valueOf(ip3) + "." + String.valueOf(ip4+block_size-1);
+                        ip_ranges_display_text_views[index][0].setText(start_ip);
+                        ip_ranges_display_text_views[index][2].setText(end_ip);
+                        ip_range_output_table.addView(ip_ranges_display_table_rows[index]);
+                        //ip_range[index] = new String[]{start_ip,end_ip};
+                        index ++;
+                    }
+                }
+            }
+        }
+        if (ip_class.equals("A")){
+            ip_temp = ip_address_values[0];
+            if (block_get==2){
+                for (Integer ip2=0; ip2<256; ip2+=block_size){
+                    if (index>=array_size) break;
+                    start_ip = ip_temp + "." + String.valueOf(ip2) + "." + "0" + "." + "0";
+                    end_ip = ip_temp + "." + String.valueOf(ip2+block_size-1) + "." + "255" + "." + "255";
+                    ip_ranges_display_text_views[index][0].setText(start_ip);
+                    ip_ranges_display_text_views[index][2].setText(end_ip);
+                    ip_range_output_table.addView(ip_ranges_display_table_rows[index]);
+                    //ip_range[index] = new String[]{start_ip,end_ip};
+                    index ++;
+                }
+            }
+            if (block_get==3){
+                for (Integer ip2=0; ip2<256; ip2++){
+                    if (index>=array_size) break;
+                    for (Integer ip3=0; ip3<256; ip3+=block_size){
+                        if (index>=array_size) break;
+                        start_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3) + "." + "0";
+                        end_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3+block_size-1) + "." + "255";
+                        ip_ranges_display_text_views[index][0].setText(start_ip);
+                        ip_ranges_display_text_views[index][2].setText(end_ip);
+                        ip_range_output_table.addView(ip_ranges_display_table_rows[index]);
+                        //ip_range[index] = new String[]{start_ip,end_ip};
+                        index ++;
+                    }
+                }
+            }
+            if (block_get==4){
+                for (Integer ip2=0; ip2<256; ip2++){
+                    if (index>=array_size) break;
+                    for (Integer ip3=0; ip3<256; ip3++){
+                        if (index>=array_size) break;
+                        for (Integer ip4=0; ip4<256; ip4+=block_size ){
+                            if (index>=array_size) break;
+                            start_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3) + "." + String.valueOf(ip4);
+                            end_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3) + "." + String.valueOf(ip4+block_size-1);
+                            ip_ranges_display_text_views[index][0].setText(start_ip);
+                            ip_ranges_display_text_views[index][2].setText(end_ip);
+                            ip_range_output_table.addView(ip_ranges_display_table_rows[index]);
+                            //ip_range[index] = new String[]{start_ip,end_ip};
+                            index ++;
+                        }
+                    }
+                }
+            }
+        }
+    }*/
 }
