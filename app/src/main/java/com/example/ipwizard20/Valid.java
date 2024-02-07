@@ -59,13 +59,8 @@ public class Valid{
                 return false;
             }
         }
-        if (ip_address_split_int[0]==127 || ip_address_split_int[0] < 1 || ip_address_split_int[0]>223){
-            return false;
-        }
-        else{
-            return true;
-        }
-    };
+        return ip_address_split_int[0] != 127 && ip_address_split_int[0] >= 1 && ip_address_split_int[0] <= 223;
+    }
 
     public static Boolean is_valid_subnet_mask_value(Integer value){
         Integer[] valid_subnet_mask_values = {255,254,252,248,240,224,192,128,0};
@@ -118,9 +113,7 @@ public class Valid{
 
         if (ip_class.equals("C")){
             if (subnet_mask_split_int[0]==255 && subnet_mask_split_int[1]==255 && subnet_mask_split_int[2]==255){
-                if (!(is_valid_subnet_mask_value(subnet_mask_split_int[3]))){
-                    return false;
-                }
+                return is_valid_subnet_mask_value(subnet_mask_split_int[3]);
             }
             else{
                 return false;
@@ -129,13 +122,9 @@ public class Valid{
         else if (ip_class.equals("B")) {
             if (subnet_mask_split_int[0]==255 && subnet_mask_split_int[1]==255) {
                 if (subnet_mask_split_int[2]==255){
-                    if (!is_valid_subnet_mask_value(subnet_mask_split_int[3])){
-                        return false;
-                    }
+                    return is_valid_subnet_mask_value(subnet_mask_split_int[3]);
                 }
-                else if (!(is_valid_subnet_mask_value(subnet_mask_split_int[2]) && subnet_mask_split_int[3]==0)){
-                    return false;
-                }
+                else return is_valid_subnet_mask_value(subnet_mask_split_int[2]) && subnet_mask_split_int[3] == 0;
             }
             else{
                 return false;
@@ -145,17 +134,11 @@ public class Valid{
             if (subnet_mask_split_int[0]==255){
                 if (subnet_mask_split_int[1]==255){
                     if (subnet_mask_split_int[2]==255){
-                        if (!is_valid_subnet_mask_value(subnet_mask_split_int[3])){
-                            return  false;
-                        }
+                        return is_valid_subnet_mask_value(subnet_mask_split_int[3]);
                     }
-                    else if (!(is_valid_subnet_mask_value(subnet_mask_split_int[2]) && subnet_mask_split_int[3]==0)){
-                        return false;
-                    }
+                    else return is_valid_subnet_mask_value(subnet_mask_split_int[2]) && subnet_mask_split_int[3] == 0;
                 }
-                else if (!(is_valid_subnet_mask_value(subnet_mask_split_int[1]) && subnet_mask_split_int[2]==0 && subnet_mask_split_int[3]==0)){
-                    return false;
-                }
+                else return is_valid_subnet_mask_value(subnet_mask_split_int[1]) && subnet_mask_split_int[2] == 0 && subnet_mask_split_int[3] == 0;
             }
             else{
                 return false;
@@ -164,8 +147,6 @@ public class Valid{
         else{
             return false;
         }
-
-        return  true;
     }
 
     public static Boolean is_valid_subnet_count(String str_subnet_count, Integer max_subnet_count){
@@ -176,11 +157,8 @@ public class Valid{
         catch (Exception e){
             return false;
         }
-        if (!(subnet_count<=max_subnet_count) || !(subnet_count>0)){
-            return false;
-        }
-        return true;
-    };
+        return subnet_count <= max_subnet_count && subnet_count > 0;
+    }
 
     public static Boolean is_valid_host_count(String str_host_count, Integer max_host_count){
         Integer host_count ;
@@ -190,11 +168,8 @@ public class Valid{
         catch (Exception e){
             return false;
         }
-        if (!(host_count+2<=max_host_count) || !(host_count>0)){
-            return false;
-        }
-        return true;
-    };
+        return host_count + 2 <= max_host_count && host_count > 0;
+    }
 
     public static  String get_ip_class(String ip_address){
         Integer ip1 = Integer.parseInt(split(ip_address,'.',4 )[0]);
@@ -206,7 +181,7 @@ public class Valid{
         else{
             return "A";
         }
-    };
+    }
 
     public static  boolean is_valid_ip_range_count(String str_range_count){
         Integer int_range_count = 0;

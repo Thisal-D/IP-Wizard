@@ -1,6 +1,5 @@
 package com.example.ipwizard20;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -128,12 +127,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (Valid.is_valid_ip_range_count(ip_range_count_input_text.getText().toString())){
-                    save_btn.setEnabled(true);
-                }
-                else{
-                    save_btn.setEnabled(false);
-                }
+                save_btn.setEnabled(Valid.is_valid_ip_range_count(ip_range_count_input_text.getText().toString()));
             }
         };
 

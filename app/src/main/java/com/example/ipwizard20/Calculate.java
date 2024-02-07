@@ -18,7 +18,7 @@ public class Calculate {
         if (ip_class=="B") end=2;
         if (ip_class=="A") end=1;
         for (Integer i=0; i<end; i++){
-            formatted_address+=String.valueOf(Integer.parseInt(split_ip[i])) + ".";
+            formatted_address+= Integer.parseInt(split_ip[i]) + ".";
         }
         formatted_address += str_multiply("0.",(4-end));
         formatted_address =   formatted_address.substring(0,formatted_address.length()-1);
@@ -30,7 +30,7 @@ public class Calculate {
         String[] split_ip =  Valid.split(address,'.',4);
             for (Integer i=0; i<3; i++){
             //System.out.print(split_ip[i]+ ".");
-            formatted_address+=String.valueOf(Integer.parseInt(split_ip[i])) + ".";
+            formatted_address+= Integer.parseInt(split_ip[i]) + ".";
         }
         //System.out.println(split_ip[3]);
         formatted_address += String.valueOf(Integer.valueOf(split_ip[3])) ;
@@ -71,7 +71,7 @@ public class Calculate {
 
         String binary_val = "";
         while (number>0){
-            binary_val = String.valueOf(number%2)  +  binary_val;
+            binary_val = number % 2 +  binary_val;
             number = (int)number/2;
         }
         return binary_val;
@@ -134,8 +134,8 @@ public class Calculate {
             ip_temp = ip_address_values[0] + "." + ip_address_values[1] + "." + ip_address_values[2];
             for (Integer ip4=0; ip4<256; ip4+=block_size){
                 if (index>=array_size)break;
-                start_ip = ip_temp + "." + String.valueOf(ip4);
-                end_ip = ip_temp + "." + String.valueOf(ip4+block_size-1);
+                start_ip = ip_temp + "." + ip4;
+                end_ip = ip_temp + "." + (ip4 + block_size - 1);
                 ip_range[index] = new String[]{start_ip,end_ip};
                 index ++;
             }
@@ -146,8 +146,8 @@ public class Calculate {
             if(block_get==3){
                 for (Integer ip3=0; ip3<256; ip3+=block_size){
                     if (index>=array_size)break;
-                    start_ip = ip_temp + "." + String.valueOf(ip3) + "." + "0";
-                    end_ip = ip_temp + "." + String.valueOf(ip3+block_size-1) + "." + "255";
+                    start_ip = ip_temp + "." + ip3 + "." + "0";
+                    end_ip = ip_temp + "." + (ip3 + block_size - 1) + "." + "255";
                     ip_range[index] = new String[]{start_ip,end_ip};
                     index ++;
                 }
@@ -157,8 +157,8 @@ public class Calculate {
                     if (index>=array_size) break;
                     for (Integer ip4=0; ip4<256 ; ip4+=block_size){
                         if (index>=array_size) break;
-                        start_ip = ip_temp + "." + String.valueOf(ip3) + "." + String.valueOf(ip4);
-                        end_ip = ip_temp + "." + String.valueOf(ip3) + "." + String.valueOf(ip4+block_size-1);
+                        start_ip = ip_temp + "." + ip3 + "." + ip4;
+                        end_ip = ip_temp + "." + ip3 + "." + (ip4 + block_size - 1);
                         ip_range[index] = new String[]{start_ip,end_ip};
                         index ++;
                     }
@@ -170,8 +170,8 @@ public class Calculate {
             if (block_get==2){
                 for (Integer ip2=0; ip2<256; ip2+=block_size){
                     if (index>=array_size) break;
-                    start_ip = ip_temp + "." + String.valueOf(ip2) + "." + "0" + "." + "0";
-                    end_ip = ip_temp + "." + String.valueOf(ip2+block_size-1) + "." + "255" + "." + "255";
+                    start_ip = ip_temp + "." + ip2 + "." + "0" + "." + "0";
+                    end_ip = ip_temp + "." + (ip2 + block_size - 1) + "." + "255" + "." + "255";
                     ip_range[index] = new String[]{start_ip,end_ip};
                     index ++;
                 }
@@ -181,8 +181,8 @@ public class Calculate {
                     if (index>=array_size) break;
                     for (Integer ip3=0; ip3<256; ip3+=block_size){
                         if (index>=array_size) break;
-                        start_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3) + "." + "0";
-                        end_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3+block_size-1) + "." + "255";
+                        start_ip = ip_temp + "." + ip2 + "." + ip3 + "." + "0";
+                        end_ip = ip_temp + "." + ip2 + "." + (ip3 + block_size - 1) + "." + "255";
                         ip_range[index] = new String[]{start_ip,end_ip};
                         index ++;
                     }
@@ -195,8 +195,8 @@ public class Calculate {
                         if (index>=array_size) break;
                         for (Integer ip4=0; ip4<256; ip4+=block_size ){
                             if (index>=array_size) break;
-                            start_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3) + "." + String.valueOf(ip4);
-                            end_ip = ip_temp + "." + String.valueOf(ip2) + "." + String.valueOf(ip3) + "." + String.valueOf(ip4+block_size-1);
+                            start_ip = ip_temp + "." + ip2 + "." + ip3 + "." + ip4;
+                            end_ip = ip_temp + "." + ip2 + "." + ip3 + "." + (ip4 + block_size - 1);
                             ip_range[index] = new String[]{start_ip,end_ip};
                             index ++;
                         }

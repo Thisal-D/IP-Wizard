@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
             display_ip_range(calculated_subnet_mask);
         }
-    };
+    }
 
     private void validate_subnet_count(){
         subnet_count = subnet_count_input_text.getText().toString();
