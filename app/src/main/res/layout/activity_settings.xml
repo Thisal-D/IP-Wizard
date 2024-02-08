@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:alpha="0.7"
         android:text="Warning : "
         android:textSize="15sp"
@@ -84,6 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
+        android:id="@+id/textView8"
         android:layout_width="0dp"
         android:layout_height="69dp"
         android:layout_marginStart="60dp"
@@ -134,11 +135,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="4dp"
-        android:text="(1-200)"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:text="recommended(0-200)"
         android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:text="*"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

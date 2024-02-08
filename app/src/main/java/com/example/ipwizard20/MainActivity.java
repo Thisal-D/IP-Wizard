@@ -1,6 +1,4 @@
 package com.example.ipwizard20;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -9,12 +7,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextWatcher;
-import android.transition.Scene;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -22,8 +17,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
@@ -59,27 +56,27 @@ public class MainActivity extends AppCompatActivity {
     // All the widgets
     ConstraintLayout widget_section_1, widget_section_2, widget_section_3, widget_section_4;
     TableLayout ip_range_output_table ;
-    ScrollView ip_range_output_scrollview ;
-    EditText ip_address_input_text, host_count_input_text, subnet_count_input_text,subnet_mask_input_text ;
+    ScrollView ip_range_output_scrollview;
+    EditText ip_address_input_text, host_count_input_text, subnet_count_input_text, subnet_mask_input_text;
     TextView ip_address_count_output_text, host_count_output_text,
             subnet_mask_output_text, subnet_count_output_text,
-            available_ip_address_count_output_text , default_subnet_mask_output_text, ip_class_output_text ,
+            available_ip_address_count_output_text, default_subnet_mask_output_text, ip_class_output_text,
             ip_ranges_count_display_output_text;
 
-    ColorStateList default_text_color ;
+    ColorStateList default_text_color;
     ImageButton setting_btn;
 
-    String SETTINGS_DIRECTORY, SETTINGS_FILE_NAME;
+    String FILE_DIRECTORY, SETTINGS_FILE_NAME;
 
 
     //used to set disable input text boxes  edit text
-    private void set_enabled(EditText widget,String hint){
+    private void set_enabled(EditText widget, String hint) {
         widget.setEnabled(true);
         widget.setHint(hint);
     }
 
     //used to set disable input text boxes  edit text
-    private void set_disabled(EditText widget,String hint){
+    private void set_disabled(EditText widget, String hint) {
         widget.setEnabled(false);
         widget.setHint(hint);
     }
@@ -99,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 IP_RANGES_DISPLAY_COUNT,ip_ranges_display_text_views, ip_range_output_table, ip_ranges_display_table_rows);*/
     }
 
-    private void  reset_outputs(){
+    private void reset_outputs() {
         subnet_count_output_text.setText("0");
         ip_address_count_output_text.setText("0");
         host_count_output_text.setText("0");
@@ -107,12 +104,50 @@ public class MainActivity extends AppCompatActivity {
         ip_range_output_table.removeAllViewsInLayout();
     }
 
-    private void calculate(){
-        if (is_subnet_count_valid || is_host_count_valid || is_subnet_mask_valid ){
+    public Boolean set_history(String file_name) {
+        File file = new File(FILE_DIRECTORY, file_name);
+        try {
+            if (!file.exists()) {
+                return false;
+            }
+            Scanner read_file = new Scanner(file);
+            String value_is = read_file.nextLine();
+            String value = read_file.nextLine();
+            read_file.close();
+            if (value_is.equals("subnet_count")) subnet_count_input_text.setText(value);
+            if (value_is.equals("host_count")) host_count_input_text.setText(value);
+            if (value_is.equals("subnet_mask")) subnet_mask_input_text.setText(value);
+            if (value_is.equals("ip_address")) ip_address_input_text.setText(value);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    public void save_history(String file_name, String value_is, String value) {
+        File file = new File(FILE_DIRECTORY, file_name);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter write_file = new FileWriter(file);
+            write_file.write(value_is);
+            write_file.write("\n");
+            write_file.write(value);
+            write_file.close();
+        } catch (Exception e) {
+        }
+    }
+
+    private void calculate() {
+        if (is_subnet_count_valid || is_host_count_valid || is_subnet_mask_valid) {
             // calculate net_bits_count & host_bit_count
-            if (is_subnet_count_valid) net_and_host_bits_count = Calculate.get_net_bits__host_bits(ip_class, req_subnet_count, -1);
-            if (is_host_count_valid) net_and_host_bits_count = Calculate.get_net_bits__host_bits(ip_class, -1, req_host_count+2);
-            if (is_subnet_mask_valid) net_and_host_bits_count = Calculate.get_net_bits__host_bits(validated_subnet_mask, ip_class);
+            if (is_subnet_count_valid)
+                net_and_host_bits_count = Calculate.get_net_bits__host_bits(ip_class, req_subnet_count, -1);
+            if (is_host_count_valid)
+                net_and_host_bits_count = Calculate.get_net_bits__host_bits(ip_class, -1, req_host_count + 2);
+            if (is_subnet_mask_valid)
+                net_and_host_bits_count = Calculate.get_net_bits__host_bits(validated_subnet_mask, ip_class);
             // passing to to another var to  calculate net_bits_count & host_bit_count
             calculated_net_bits_count = net_and_host_bits_count[0];
             calculated_host_bit_count = net_and_host_bits_count[1];
@@ -135,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate_subnet_count(){
         subnet_count = subnet_count_input_text.getText().toString();
+        save_history("value.txt", "subnet_count", subnet_count);
         if (!subnet_count.equals("")) {
             set_disabled(host_count_input_text,"-");
             set_disabled(subnet_mask_input_text,"-");
@@ -142,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
             if (is_subnet_count_valid){
                 subnet_count_input_text.setTextColor(default_text_color);
                 req_subnet_count = Integer.parseInt(subnet_count);
-
                 calculate();
             }
             else{
@@ -161,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate_host_count(){
         host_count = host_count_input_text.getText().toString();
+        save_history("value.txt", "host_count", host_count);
         if (!host_count.equals("")) {
             set_disabled(subnet_count_input_text,"-");
             set_disabled(subnet_mask_input_text,"-");
@@ -185,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate_subnet_mask(){
         subnet_mask = subnet_mask_input_text.getText().toString();
+        save_history("value.txt", "subnet_mask", subnet_mask);
         if (!subnet_mask.equals("")) {
             set_disabled(host_count_input_text,"-");
             set_disabled(subnet_count_input_text,"-");
@@ -229,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate_ip_address(){
         ip_address = ip_address_input_text.getText().toString();
+        save_history("ip_address.txt", "ip_address", ip_address);
         is_ip_valid = Valid.ip_format_is_valid(ip_address);
         if (is_ip_valid) {
             ip_address_input_text.setTextColor(default_text_color);
@@ -275,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
 
     public  int get_ip_ranges_display_count(){
         try{
-            File settings_file = new File(SETTINGS_DIRECTORY,SETTINGS_FILE_NAME);
+            File settings_file = new File(FILE_DIRECTORY, SETTINGS_FILE_NAME);
             //checking files is not exists and then create new file
             // write 100 & return 100 because 100 is the default i suggest
             if (!settings_file.exists()){
@@ -356,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
         default_text_color = ip_address_input_text.getTextColors();
 
 
-        SETTINGS_DIRECTORY = getFilesDir().toString();
+        FILE_DIRECTORY = getFilesDir().toString();
         SETTINGS_FILE_NAME = "settings.txt";
         //constant values
         IP_ADDRESS_HINT = "192.168.0.0";
@@ -470,7 +508,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
-            public void afterTextChanged(Editable editable) {validate_ip_address();}
+            public void afterTextChanged(Editable editable) {
+                validate_ip_address();
+            }
         };
         ip_address_input_text.addTextChangedListener(ip_address_input_text_watcher);
 
@@ -480,6 +520,9 @@ public class MainActivity extends AppCompatActivity {
                 go_to_settings();
             }
         });
+
+        set_history("value.txt");
+        set_history("ip_address.txt");
     }
 
 }
