@@ -7,7 +7,7 @@ For download apk : <a href="https://drive.google.com/file/d/1pdjX-uNBWMVbCVGPXBl
 Pixel 6 Pro (Virtual)
 
 ### Dark theme
-![1](https://github.com/Thisal-D/IP-Wizard/assets/93121062/d8ed70c9-6fcf-4824-9130-7abfee528111)![2](https://github.com/Thisal-D/IP-Wizard/assets/93121062/b83cdeda-15ec-493c-bbdb-4de48804809b)
+![1](https://github.com/Thisal-D/IP-Wizard/assets/93121062/d8ed70c9-6fcf-4824-9130-7abfee528111) &nbsp &nbsp ![2](https://github.com/Thisal-D/IP-Wizard/assets/93121062/b83cdeda-15ec-493c-bbdb-4de48804809b)
 
 <br>
 
