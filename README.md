@@ -6,9 +6,13 @@ For download apk : <a href="https://drive.google.com/file/d/1pdjX-uNBWMVbCVGPXBl
 
 Pixel 6 Pro (Virtual)
 
-![Screenshot 2024-02-13 033227](https://github.com/Thisal-D/IP-Wizard/assets/93121062/17474f74-d08c-4321-8057-40f587544f40)![Screenshot 2024-02-13 033256](https://github.com/Thisal-D/IP-Wizard/assets/93121062/b27edc6d-af56-483a-a38e-9402fd11fe4c)
+### Dark theme
+![1](https://github.com/Thisal-D/IP-Wizard/assets/93121062/9f57791d-bad0-4b8c-9712-26ec81d75227)![4](https://github.com/Thisal-D/IP-Wizard/assets/93121062/22330d99-2d50-47b5-b640-88f0317702f5)
 
-![Screenshot 2024-02-13 033335](https://github.com/Thisal-D/IP-Wizard/assets/93121062/b9673c8a-48e7-432f-9517-774ac46eeee7)![Screenshot 2024-02-13 033346](https://github.com/Thisal-D/IP-Wizard/assets/93121062/23a7b002-b982-4f29-8f2d-04a43a554318)
+<br>
+
+### Light theme
+![2](https://github.com/Thisal-D/IP-Wizard/assets/93121062/013d9303-70d2-48c2-a9b3-a45c49eb60ca)![3](https://github.com/Thisal-D/IP-Wizard/assets/93121062/5a8938fe-cd87-457d-807b-fe18e8cc6d6b)
 
 <br><br>
 
