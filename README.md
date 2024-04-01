@@ -16,5 +16,12 @@ Pixel 6 Pro (Virtual)
 
 <br><br>
 
+
 <br>
-Thanks to <a href="https://github.com/solidsman"> Abishak </a> for their support...
+<hr>
+<br>
+Thanks to :
+
+- [Abishak](https://github.com/solidsman)
+
+for their support...
