@@ -1,7 +1,7 @@
 # IP Wizard
 
-For download apk : <a href="https://drive.google.com/file/d/1pdjX-uNBWMVbCVGPXBlTcFoiGPi1sywL/view?usp=drive_link">IP Wizard</a>
-
+ <a href="https://drive.google.com/file/d/1pdjX-uNBWMVbCVGPXBlTcFoiGPi1sywL/view?usp=drive_link"> **Download .apk for Android** </a>
+ 
 ## Tests
 
 Pixel 6 Pro (Virtual)
