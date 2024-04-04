@@ -6,9 +6,8 @@
 
 <hr>
 
-### view
-
-Pixel 6 Pro (Virtual)
+### view 
+- Pixel 6 Pro(Virtual)
 
 **Dark theme**
 
