@@ -7,7 +7,8 @@
 ---
 
 ## view 
-- Pixel 6 Pro(Virtual)
+
+### Pixel 6 Pro(Virtual)
 
 **Dark theme**
 
