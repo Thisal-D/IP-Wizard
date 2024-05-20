@@ -6,7 +6,7 @@
 
 ---
 
-## view 
+## View 
 
 ### Pixel 6 Pro(Virtual)
 
