@@ -22,6 +22,28 @@
 
 ---
 
+## How to Build and Run
+
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Thisal-D/IP-Wizard.git
+    ```
+
+2. **Open the Project in Android Studio:**
+    - Launch Android Studio.
+    - Select "Open an existing Android Studio project".
+    - Navigate to the `IP-Wizard` folder and open it.
+
+3. **Build the Project:**
+    - Go to **Build** > **Make Project** or press **Ctrl+F9**.
+
+4. **Run the App:**
+    - Connect your Android device via USB or set up an emulator.
+    - Click the **Run** button or press **Shift+F10**.
+    - Select your target device and click **OK**.
+
+---
+
 ## Contributors
 
 - [<img src="https://github.com/solidsman.png?size=25" width="25">](https://github.com/solidsman) [Abishak](https://github.com/solidsman)
